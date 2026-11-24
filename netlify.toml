@@ -1,0 +1,11 @@
+# Static site (plain index.html, no framework) with Netlify Functions for booking.
+# There is no compile step. The build command only installs the functions'
+# runtime dependencies (googleapis, luxon) so esbuild can bundle them.
+# The repository root is published as-is.
+[build]
+  command = "npm install --omit=dev --no-audit --no-fund"
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"

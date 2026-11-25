@@ -1,0 +1,2 @@
+const {json,slots}=require('./shared');
+exports.handler=async(event)=>{if(event.httpMethod!=='GET')return json(405,{error:'Method not allowed'});try{const p=event.queryStringParameters||{};return json(200,{slots:await slots(p.date,Number(p.minutes))});}catch(e){console.error(e);return json(400,{error:e.message==='Booking service is not configured.'?e.message:e.message||'Availability unavailable.'});}};
